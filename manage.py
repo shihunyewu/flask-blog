@@ -15,6 +15,10 @@ migrate = Migrate(app, db)
 
 
 def make_shell_context():
+    """
+    注册了程序、数据库实例以及模型，这些对象能够直接导入 shell
+    :return:
+    """
     return dict(app=app, db=db, User=User, Role=Role)
 
 
@@ -31,7 +35,9 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 
+# 将这些对象导入到 shell
 manager.add_command('shell', Shell(make_context=make_shell_context))
+# 导入 migrate 命令，用来迁移数据库
 manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':

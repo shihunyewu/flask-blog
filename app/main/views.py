@@ -26,3 +26,12 @@ def index():
         # 视图函数 index() 注册的端点名是 main.index
         return redirect(url_for('main.index'))
     return render_template('index.html', name=form.name.data)
+
+
+@main.route('/user')
+def temp_user():
+    """
+    暂时查看 user.html 页面
+    :return:
+    """
+    return render_template('user.html')
